@@ -1,12 +1,11 @@
 import 'todomvc-common/base.css';
 import 'todomvc-app-css/index.css';
 import './css/app.css';
-import {mvc} from 'richardUtils';
+import {mvc, domUtils} from 'richardUtils';
 import {InputView} from './components/input.view';
 import {ListView} from './components/list.view';
 import {CounterView} from './components/counter.view';
 import {FooterView} from './components/footer.view';
-import {domUtils} from 'richardUtils';
 var {$} = domUtils;
 
 var events = new mvc.Events();
