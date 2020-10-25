@@ -17,6 +17,7 @@ var model = {
   }]
 };
 
+
 var proxy = mvc.createProxy(model, events);
 
 var inputView = mvc.createComponent(proxy, InputView, events);
