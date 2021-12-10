@@ -66,7 +66,7 @@ export function ListView(model, events) {
       });
 
       $('button', li).addEventListener('click', () => {
-        model.todos = utils.arraySplice(model.todos, index);
+        model.todos = utils.removeArrayItem(model.todos, index);
       });
 
       var editInput = $('.edit', li);
