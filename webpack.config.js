@@ -1,3 +1,4 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -8,6 +9,10 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'docs'),
   },
+  plugins: [new HtmlWebpackPlugin({
+    title: 'Richard Todomvc',
+    template: './index.html'
+  })],
   module: {
     rules: [
       {
