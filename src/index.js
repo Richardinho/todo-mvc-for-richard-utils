@@ -11,9 +11,11 @@ var {$} = domUtils;
 var events = new mvc.Events();
 
 var model = {
+  filterBy: 'all',
   todos: [{
     title: 'banana',
     completed:  true,
+    visible: true,
   }]
 };
 
@@ -25,6 +27,31 @@ var listView = mvc.createComponent(proxy, ListView, events);
 var counterView = mvc.createComponent(proxy, CounterView, events);
 var footerView = mvc.createComponent(proxy, FooterView, events);
 
+function handleAll() {
+ proxy.filterBy = 'all';
+}
+
+function handleCompleted() {
+  proxy.filterBy = 'completed';
+}
+
+function handleActive() {
+  proxy.filterBy = 'active';
+}
+
+var router = new mvc.Router({
+  '' : handleAll,
+  'completed' : handleCompleted,
+  'active' : handleActive,
+});
+
+window.addEventListener('click', function (event) {
+  if ('internalLink' in event.target.dataset) {
+    event.preventDefault();
+    const href = event.target.getAttribute('href');
+    router.navigate(href);
+  } 
+});
 
 function hideMainAndFooter() {
   var mainEl = $('#main');
@@ -43,3 +70,4 @@ events.onPropertyChange('todos', hideMainAndFooter);
 
 hideMainAndFooter();
 
+router.start();
